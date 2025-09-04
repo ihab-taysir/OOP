@@ -4,7 +4,15 @@ function Student(name, age, grade) {
   this.age = age;
 
   // private variable (encapsulation)
-  let _grade = grade;
+  let _grade;
+
+  // validate initial grade
+  if (grade === "A" || grade === "F") {
+    _grade = grade;
+  } else {
+    _grade = "F"; // default fallback value
+    console.log("⚠ Invalid initial grade, set to 'F' by default.");
+  }
 
   // Method: introduce
   this.introduce = function () {
