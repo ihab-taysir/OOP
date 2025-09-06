@@ -3,7 +3,7 @@ function Student(name, age, grade) {
   this.name = name;
   this.age = age;
 
-  // private variable (encapsulation)
+  // private variable (encapsulation with closure)
   let _grade;
 
   // validate initial grade
@@ -13,13 +13,6 @@ function Student(name, age, grade) {
     _grade = "F"; // default fallback value
     console.log("⚠ Invalid initial grade, set to 'F' by default.");
   }
-
-  // Method: introduce
-  this.introduce = function () {
-    console.log(
-      `Hi, my name is ${this.name}, I’m ${this.age} years old, and I’m in grade ${_grade}.`
-    );
-  };
 
   // Getter: getGrade
   this.getGrade = function () {
@@ -35,6 +28,15 @@ function Student(name, age, grade) {
     }
   };
 }
+
+// Method: introduce (shared across all instances via prototype)
+Student.prototype.introduce = function () {
+  console.log(
+    `Hi, my name is ${this.name}, I’m ${
+      this.age
+    } years old, and I’m in grade ${this.getGrade()}.`
+  );
+};
 
 //___________________testing_____________________________
 
